@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcel Label Extractor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-area">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <div>
+                    <h1>Parcel Label Extractor</h1>
+                    <p class="subtitle">AI-Powered Logistics Scanning Pipeline</p>
+                </div>
+            </div>
+            <div class="health-badge" id="health-status">
+                <span class="indicator"></span> API Connected
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <!-- Upload Area -->
+            <section class="upload-section">
+                <div class="card">
+                    <h2>Scan New Parcel</h2>
+                    <p class="card-desc">Drag and drop parcel image (JPEG, PNG up to 20MB)</p>
+                    
+                    <div id="drop-zone" class="drop-zone">
+                        <input type="file" id="file-input" accept=".jpg,.jpeg,.png" multiple style="display: none;">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <p class="drop-text">Drag files here or <span class="browse-link">browse</span></p>
+                    </div>
+
+                    <!-- Progress Bar container -->
+                    <div id="progress-container" class="progress-container" style="display: none;">
+                        <div class="progress-info">
+                            <span id="progress-label">Uploading...</span>
+                            <span id="progress-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Current Scan Panel (Removed) -->
+        </main>
+
+        <!-- Scanning Log Table -->
+        <section class="history-section">
+            <div class="card">
+                <div class="table-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <h2>Completed Scanning Operations</h2>
+                    <button id="btn-download-all" class="btn btn-secondary" style="display: none; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; font-size: 0.875rem; border-radius: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download Complete Batch (CSV)
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="jobs-table">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                                <th>Carrier</th>
+                                <th>Tracking Number</th>
+                                <th>Weight</th>
+                                <th>Dimensions</th>
+                                <th>Status Code</th>
+                                <th style="text-align: right; padding-right: 1.5rem;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobs-tbody">
+                            <!-- Appended dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
